@@ -1,3 +1,54 @@
 {
-  "extends": "next/core-web-vitals"
+  //TypeScript用のESLintパーサーを指定
+  "parser": "@typescript-eslint/parser",
+
+  //ESLintの設定ルールを指定
+  "extends": [
+    //ESLintの推奨ルールを適用
+    "eslint:recommended",
+
+    //TypeScriptに関するESLintの推奨ルールを適用
+    "plugin:@typescript-eslint/recommended",
+
+    //React用の推奨ルールを適用
+    "plugin:react/recommended",
+
+    //Next.jsのCore Web Vitalsルールを適用
+    "next/core-web-vitals",
+
+    //Prettierの設定を統合とESLintとの競合帽子
+    "plugin:prettier/recommended"
+  ],
+
+  //コード解析の設定
+  "parserOptions": {
+    //ECMAScriptのバージョンを2020に設定
+    "ecmaVersion": 2020,
+
+    //モジュール（import/export）を使用するため、ソースタイプを'module'に設定
+    "sourceType": "module"
+  },
+
+  //ルールのカスタマイズ
+  "rules": {
+    //関数の戻り値の型を指定しなくても警告を表示しないように設定
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+
+    //'any'型の使用を警告
+    "@typescript-eslint/no-explicit-any": "warn",
+
+    //Reactでprop-typesの使用を無効化
+    "react/prop-types": "off",
+
+    //Prettierのルールをエラーとして表示
+    "prettier/prettier": "error"
+  },
+
+  //各種設定
+  "settings": {
+    "react": {
+      //使用するReactのバージョンを自動検出させる
+      "version": "detect"
+    }
+  }
 }
